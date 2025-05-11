@@ -1,13 +1,22 @@
+using Minuta.Domain.Entidades;
+using Minuta.Infrastructure.Data;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Mvc;
+
+var db = new Database();
+db.Initialize();
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Minuta API", Version = "v1" });
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -16,29 +25,23 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+// Endpoint para adicionar um novo relógio (POST)
+app.MapPost("/relogio", async ([FromBody] Relogio novoRelogio, Database db) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    await db.AdicionarRelogio(novoRelogio);
+    return Results.Created($"/relogio/{novoRelogio.Id}", novoRelogio);
 })
-.WithName("GetWeatherForecast")
+.WithName("AdicionarRelogio")
+.WithOpenApi();
+
+
+// Endpoint para listar todos os relógios (GET)
+app.MapGet("/relogios", (Database db) =>
+{
+    var relogios = db.ListarRelogios();
+    return Results.Ok(relogios);
+})
+.WithName("ListarRelogios")
 .WithOpenApi();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

@@ -1,5 +1,9 @@
-public class Carrinho{
-    public int Id {get;set;}
-    public int UsuarioId {get;set;}
-    public List<ItemCarrinho> itens {get; set;}
+using System.Collections.Generic;
+
+namespace Minuta.Domain.Entidades
+{
+    public class Carrinho
+    {
+        public List<ItemCarrinho> Itens { get; set; }
+    }
 }
