@@ -1,3 +1,5 @@
+using Minuta.Domain.Enums;
+
 namespace Minuta.Domain.Entidades
 {
     public class Relogio
@@ -6,6 +8,6 @@ namespace Minuta.Domain.Entidades
         public string Nome { get; set; }
         public decimal Preco { get; set; }
         public int Quantidade { get; set; }
-        public string Tipo { get; set; }
+        public TipoRelogio Tipo { get; set; }
     }
 }

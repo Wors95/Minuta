@@ -3,12 +3,12 @@ using Minuta.Infrastructure.Data;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
-var db = new Database();
-db.Initialize();
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Registra a classe Database como serviço singleton
+builder.Services.AddSingleton<Database>();
+
+// Adiciona serviços para documentação Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -16,6 +16,10 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var app = builder.Build();
+
+// Inicializa o banco de dados (usando injeção de dependência)
+var db = app.Services.GetRequiredService<Database>();
+db.Initialize();
 
 if (app.Environment.IsDevelopment())
 {
@@ -25,17 +29,16 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Endpoint para adicionar um novo relógio (POST)
-app.MapPost("/relogio", async ([FromBody] Relogio novoRelogio, Database db) =>
+// Endpoint POST: adiciona um novo relógio
+app.MapPost("/relogio", async ([FromBody] Relogio novoRelogio, [FromServices] Database db) =>
 {
-    await db.AdicionarRelogio(novoRelogio);
+    await db.AdicionarRelogioAsync(novoRelogio);
     return Results.Created($"/relogio/{novoRelogio.Id}", novoRelogio);
 })
 .WithName("AdicionarRelogio")
 .WithOpenApi();
 
-
-// Endpoint para listar todos os relógios (GET)
+// Endpoint GET: lista todos os relógios
 app.MapGet("/relogios", (Database db) =>
 {
     var relogios = db.ListarRelogios();

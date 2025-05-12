@@ -1,8 +1,6 @@
 using Microsoft.Data.Sqlite;
-using Minuta.Domain;
-using Minuta.Domain.Enums; // Se estiver usando enums
-using Minuta.Domain.Entidades; // Se a classe Relogio estiver nesse namespace
-
+using Minuta.Domain.Entidades;
+using Minuta.Domain.Enums;
 
 namespace Minuta.Infrastructure.Data
 {
@@ -10,7 +8,6 @@ namespace Minuta.Infrastructure.Data
     {
         private const string _connectionString = "Data Source=Data/minuta.db";
 
-        // Método que cria a tabela de Relogios (mantido)
         public void Initialize()
         {
             if (!Directory.Exists("Data"))
@@ -32,7 +29,6 @@ namespace Minuta.Infrastructure.Data
             command.ExecuteNonQuery();
         }
 
-        // Método para adicionar um relógio (assíncrono)
         public async Task AdicionarRelogioAsync(Relogio relogio)
         {
             using var connection = new SqliteConnection(_connectionString);
@@ -45,14 +41,13 @@ namespace Minuta.Infrastructure.Data
             ";
 
             command.Parameters.AddWithValue("$nome", relogio.Nome);
-            command.Parameters.AddWithValue("$preco", relogio.Preco);
+            command.Parameters.AddWithValue("$preco", (double)relogio.Preco); // Corrigido: decimal para double
             command.Parameters.AddWithValue("$quantidade", relogio.Quantidade);
-            command.Parameters.AddWithValue("$tipo", relogio.Tipo);
+            command.Parameters.AddWithValue("$tipo", (int)relogio.Tipo); // Corrigido: Enum para int
 
             await command.ExecuteNonQueryAsync();
         }
 
-        // Método para listar todos os relógios (adicionado)
         public List<Relogio> ListarRelogios()
         {
             var relogios = new List<Relogio>();
@@ -70,9 +65,9 @@ namespace Minuta.Infrastructure.Data
                 {
                     Id = reader.GetInt32(0),
                     Nome = reader.GetString(1),
-                    Preco = reader.GetInt32(2),
+                    Preco = (decimal)reader.GetDouble(2), // Corrigido: double para decimal
                     Quantidade = reader.GetInt32(3),
-                    Tipo = reader.GetString(10)
+                    Tipo = (TipoRelogio)reader.GetInt32(4) // Corrigido: inteiro para Enum
                 });
             }
 
