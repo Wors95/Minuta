@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo de Relógios</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Relógios</h1>
+
+    <form id="form-relogio">
+      <input type="text" id="marca" placeholder="Marca" required />
+      <input type="text" id="modelo" placeholder="Modelo" required />
+      <input type="number" id="preco" placeholder="Preço" required />
+      <button type="submit">Cadastrar</button>
+    </form>
+
+    <div id="lista-relogios" class="lista"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
