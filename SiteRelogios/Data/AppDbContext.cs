@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SiteRelogios.Models;
 
-namespace SiteRelogios.Dados;
+namespace SiteRelogios.Data;
 
 public class AppDbContext : DbContext
 {
