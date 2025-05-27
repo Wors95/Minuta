@@ -35,15 +35,18 @@ Sistema simples de cadastro, listagem, edição e exclusão de relógios. Utiliz
 
 ---
 
-## 🚀 Como Executar o Projeto
-Pré-requisitos
-.NET SDK 8.0+
-SQLite (ou algum cliente de visualização como DB Browser for SQLite)
-Git instalado
+
+
 
 ---
 
 ## 🛠️ Como Executar o Projeto
+
+### Pré-requisitos
+.NET SDK 8.0+
+SQLite (ou algum cliente de visualização como DB Browser for SQLite)
+Git instalado
+
 
 ### 1. Clone o repositório
 
