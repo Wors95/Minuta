@@ -17,6 +17,24 @@
       <button type="submit">Cadastrar</button>
     </form>
 
+    
+    <div id="modal-editar" class="modal">
+  <div class="modal-content">
+    <h2>Editar Relógio</h2>
+    <form id="form-editar">
+      <input type="text" id="edit-marca" placeholder="Marca" required />
+      <input type="text" id="edit-modelo" placeholder="Modelo" required />
+      <input type="number" id="edit-preco" placeholder="Preço" required />
+      <input type="hidden" id="edit-id" />
+      <div class="modal-buttons">
+        <button type="submit">Salvar</button>
+        <button type="button" id="cancelar-edicao">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
     <div id="lista-relogios" class="lista"></div>
   </div>
 

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\VITORGABRIELBRANDAOD\\Desktop\\Minuta\\SiteRelogios\\SiteRelogios.csproj": {}
+    "C:\\Users\\vitor\\OneDrive\\Área de Trabalho\\minutateste\\Minuta\\siterelogios\\SiteRelogios.csproj": {}
   },
   "projects": {
-    "C:\\Users\\VITORGABRIELBRANDAOD\\Desktop\\Minuta\\SiteRelogios\\SiteRelogios.csproj": {
+    "C:\\Users\\vitor\\OneDrive\\Área de Trabalho\\minutateste\\Minuta\\siterelogios\\SiteRelogios.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\VITORGABRIELBRANDAOD\\Desktop\\Minuta\\SiteRelogios\\SiteRelogios.csproj",
+        "projectUniqueName": "C:\\Users\\vitor\\OneDrive\\Área de Trabalho\\minutateste\\Minuta\\siterelogios\\SiteRelogios.csproj",
         "projectName": "SiteRelogios",
-        "projectPath": "C:\\Users\\VITORGABRIELBRANDAOD\\Desktop\\Minuta\\SiteRelogios\\SiteRelogios.csproj",
-        "packagesPath": "C:\\Users\\VITORGABRIELBRANDAOD\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\VITORGABRIELBRANDAOD\\Desktop\\Minuta\\SiteRelogios\\obj\\",
+        "projectPath": "C:\\Users\\vitor\\OneDrive\\Área de Trabalho\\minutateste\\Minuta\\siterelogios\\SiteRelogios.csproj",
+        "packagesPath": "C:\\Users\\vitor\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vitor\\OneDrive\\Área de Trabalho\\minutateste\\Minuta\\siterelogios\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\VITORGABRIELBRANDAOD\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\vitor\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -81,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.406/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.410/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
